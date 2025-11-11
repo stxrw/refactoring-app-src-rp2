@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -30,8 +32,9 @@ public class MainSystem {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 * @throws ParseException 
+	 * @throws SystemErrorException 
 	 */
-	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
+	public static void main(String[] args) throws SystemErrorException, IllegalInputException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int menuNo = 0;
