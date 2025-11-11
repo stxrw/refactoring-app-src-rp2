@@ -29,4 +29,7 @@ public class ConstantMsg {
 	/** employeeテーブルのレコードを表示する際のヘッダ */
 	public static final String HEADER_EMPLOYEE_TABLE = "社員ID\t社員名\t性別\t生年月日\t部署名";
 
+	// ***** エラーメッセージ *****
+	public static final String MSG_SYSTEM_ERROR = "システムエラーが発生しました";
+
 }

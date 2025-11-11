@@ -1,5 +1,7 @@
 package jp.co.sss.crud.service;
 
+import static jp.co.sss.crud.util.ConstantMsg.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,7 +38,7 @@ public class EmployeeRegisterService implements IEmployeeService {
 			System.out.println("社員情報を登録しました");
 
 		} catch (IOException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		}
 	}
 
