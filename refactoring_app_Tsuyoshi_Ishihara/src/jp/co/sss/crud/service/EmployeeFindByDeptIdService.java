@@ -3,10 +3,9 @@ package jp.co.sss.crud.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
 import java.util.List;
 
-import jp.co.sss.crud.db.DBController;
+import jp.co.sss.crud.db.EmployeeDAO;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
@@ -22,8 +21,9 @@ public class EmployeeFindByDeptIdService implements IEmployeeService {
 
 			// 検索対象の部署ID
 			String deptIdTarget = br.readLine();
+			int deptIdTargetInt = Integer.parseInt(deptIdTarget);
 
-			List<Employee> employeeList = DBController.findByDeptId(deptIdTarget);
+			List<Employee> employeeList = new EmployeeDAO().findByDeptId(deptIdTargetInt);
 
 			if (employeeList.isEmpty()) {
 				System.out.println(ConstantMsg.NOT_FOUND + "\n");
@@ -34,7 +34,7 @@ public class EmployeeFindByDeptIdService implements IEmployeeService {
 				}
 				System.out.println("");
 			}
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (IOException e) {
 			throw new SystemErrorException();
 		}
 	}

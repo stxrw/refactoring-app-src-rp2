@@ -21,10 +21,10 @@ import jp.co.sss.crud.util.ConstantSQL;
  *
  * @author System Shared
  */
-public class DBController {
+public class DBController_削除する {
 
 	/** インスタンス化を禁止 */
-	private DBController() {
+	private DBController_削除する() {
 	}
 
 	/**

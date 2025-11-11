@@ -17,6 +17,8 @@ public class Employee {
 
 	private String birthDay;
 
+	private int deptId;
+
 	private String deptName;
 
 	@Override
@@ -84,6 +86,14 @@ public class Employee {
 
 	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
+	}
+
+	public int getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(int deptId) {
+		this.deptId = deptId;
 	}
 
 	public String getDeptName() {

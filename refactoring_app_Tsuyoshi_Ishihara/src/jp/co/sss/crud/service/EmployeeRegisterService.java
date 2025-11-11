@@ -3,10 +3,9 @@ package jp.co.sss.crud.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
-import java.text.ParseException;
 
-import jp.co.sss.crud.db.DBController;
+import jp.co.sss.crud.db.EmployeeDAO;
+import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 
@@ -25,11 +24,18 @@ public class EmployeeRegisterService implements IEmployeeService {
 			System.out.print("部署ID(1:営業部、2:経理部、3:総務部):");
 			String deptId = br.readLine();
 
-			DBController.insert(empName, gender, birthday, deptId);
+			Employee employee = new Employee();
+			employee.setEmpName(empName);
+			employee.setGender(Integer.parseInt(gender));
+			employee.setBirthDay(birthday);
+			employee.setDeptId(Integer.parseInt(deptId));
+
+			new EmployeeDAO().insert(employee);
 
 			// 登録完了メッセージを出力
 			System.out.println("社員情報を登録しました");
-		} catch (ClassNotFoundException | SQLException | IOException | ParseException e) {
+
+		} catch (IOException e) {
 			throw new SystemErrorException();
 		}
 	}

@@ -50,11 +50,13 @@ public class MainSystem {
 			String menuNoStr = br.readLine();
 			menuNo = Integer.parseInt(menuNoStr);
 
-			// サービスクラスの取得
-			IEmployeeService employeeService = IEmployeeService.getInstanceByMenuNo(menuNo);
+			if (menuNo != ConstantValue.MENU_SHUT_DOWN) {
+				// サービスクラスの取得
+				IEmployeeService employeeService = IEmployeeService.getInstanceByMenuNo(menuNo);
 
-			// 機能の呼出
-			employeeService.execute();
+				// 機能の呼出
+				employeeService.execute();
+			}
 
 			// 機能の呼出
 			//			switch (menuNo) {
