@@ -9,7 +9,7 @@ import jp.co.sss.crud.db.EmployeeDAO;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
-import jp.co.sss.crud.util.ConstantMsg;
+import jp.co.sss.crud.io.ConsoleWriter;
 
 public class EmployeeFindByEmpNameService implements IEmployeeService {
 	public void execute() throws SystemErrorException, IllegalInputException {
@@ -23,15 +23,8 @@ public class EmployeeFindByEmpNameService implements IEmployeeService {
 
 			List<Employee> employeeList = new EmployeeDAO().findByEmployeeName(searchWord);
 
-			if (employeeList.isEmpty()) {
-				System.out.println(ConstantMsg.NOT_FOUND + "\n");
-			} else {
-				System.out.println(ConstantMsg.HEADER_EMPLOYEE_TABLE);
-				for (Employee emp : employeeList) {
-					System.out.println(emp);
-				}
-				System.out.println("");
-			}
+			ConsoleWriter.showEmployees(employeeList);
+
 		} catch (IOException e) {
 			throw new SystemErrorException();
 		}
