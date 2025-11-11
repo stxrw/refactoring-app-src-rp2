@@ -8,12 +8,7 @@ import java.text.ParseException;
 
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
-import jp.co.sss.crud.service.EmployeeAllFindService;
-import jp.co.sss.crud.service.EmployeeDeleteService;
-import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
-import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
-import jp.co.sss.crud.service.EmployeeRegisterService;
-import jp.co.sss.crud.service.EmployeeUpdateService;
+import jp.co.sss.crud.service.IEmployeeService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
@@ -55,49 +50,55 @@ public class MainSystem {
 			String menuNoStr = br.readLine();
 			menuNo = Integer.parseInt(menuNoStr);
 
+			// サービスクラスの取得
+			IEmployeeService employeeService = IEmployeeService.getInstanceByMenuNo(menuNo);
+
 			// 機能の呼出
-			switch (menuNo) {
-			case ConstantValue.MENU_FIND_ALL:
-				// 全件表示機能の呼出
-				EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
-				employeeAllFindService.execute();
-				// DBController.findAll();
-				break;
+			employeeService.execute();
 
-			case ConstantValue.MENU_FIND_BY_EMP_NAME:
-				// 検索機能の呼出
-				EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
-				employeeFindByEmpNameService.execute();
-				// DBController.findByEmpName();
-				break;
-
-			case ConstantValue.MENU_FIND_BY_DEPT_ID:
-
-				// 検索機能の呼出
-				EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
-				employeeFindByDeptIdService.execute();
-				break;
-
-			case ConstantValue.MENU_INSERT:
-
-				// 登録機能の呼出
-				EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
-				employeeRegisterService.execute();
-				break;
-
-			case ConstantValue.MENU_UPDATE:
-
-				// 更新機能の呼出
-				EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
-				employeeUpdateService.execute();
-				break;
-
-			case ConstantValue.MENU_DELETE:
-				// 削除機能の呼出
-				EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
-				employeeDeleteService.execute();
-				break;
-			}
+			// 機能の呼出
+			//			switch (menuNo) {
+			//			case ConstantValue.MENU_FIND_ALL:
+			//				// 全件表示機能の呼出
+			//				EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
+			//				employeeAllFindService.execute();
+			//				// DBController.findAll();
+			//				break;
+			//
+			//			case ConstantValue.MENU_FIND_BY_EMP_NAME:
+			//				// 検索機能の呼出
+			//				EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
+			//				employeeFindByEmpNameService.execute();
+			//				// DBController.findByEmpName();
+			//				break;
+			//
+			//			case ConstantValue.MENU_FIND_BY_DEPT_ID:
+			//
+			//				// 検索機能の呼出
+			//				EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
+			//				employeeFindByDeptIdService.execute();
+			//				break;
+			//
+			//			case ConstantValue.MENU_INSERT:
+			//
+			//				// 登録機能の呼出
+			//				EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
+			//				employeeRegisterService.execute();
+			//				break;
+			//
+			//			case ConstantValue.MENU_UPDATE:
+			//
+			//				// 更新機能の呼出
+			//				EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
+			//				employeeUpdateService.execute();
+			//				break;
+			//
+			//			case ConstantValue.MENU_DELETE:
+			//				// 削除機能の呼出
+			//				EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
+			//				employeeDeleteService.execute();
+			//				break;
+			//			}
 
 		} while (menuNo != ConstantValue.MENU_SHUT_DOWN);
 		System.out.println(ConstantMsg.SHUT_DOWN);
