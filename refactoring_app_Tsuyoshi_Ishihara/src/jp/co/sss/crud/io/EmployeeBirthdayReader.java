@@ -1,5 +1,8 @@
 package jp.co.sss.crud.io;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class EmployeeBirthdayReader implements IConsoleReader {
 
 	@Override
@@ -9,7 +12,17 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
-		// TODO 入力チェックの実装
+		if (inputString == null || inputString.isBlank()) {
+			return false;
+		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		try {
+			sdf.parse(inputString);
+		} catch (ParseException e) {
+			return false;
+		}
+
 		return true;
 	}
 
