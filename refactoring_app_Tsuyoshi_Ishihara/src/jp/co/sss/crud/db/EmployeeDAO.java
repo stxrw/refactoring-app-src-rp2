@@ -219,7 +219,6 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// SQL文を実行
 			preparedStatement.executeUpdate();
 
-			// TODO　↓要修正　ParseException
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
 			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
@@ -260,7 +259,6 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// SQL文の実行(失敗時は戻り値0)
 			result = preparedStatement.executeUpdate();
 
-			// TODO　↓要修正　ParseException
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
 			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
