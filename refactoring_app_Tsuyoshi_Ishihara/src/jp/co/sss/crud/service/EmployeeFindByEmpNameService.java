@@ -1,10 +1,5 @@
 package jp.co.sss.crud.service;
 
-import static jp.co.sss.crud.util.ConstantMsg.*;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import jp.co.sss.crud.db.EmployeeDAO;
@@ -12,24 +7,21 @@ import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
+import jp.co.sss.crud.io.EmployeeNameReader;
 
 public class EmployeeFindByEmpNameService implements IEmployeeService {
 	public void execute() throws SystemErrorException, IllegalInputException {
-		try {
-			// 社員名検索
-			System.out.print("社員名:");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-			// 検索ワード
-			String searchWord = br.readLine();
+		EmployeeNameReader nameReader = new EmployeeNameReader();
+		// 社員名検索
+		System.out.print("社員名:");
 
-			List<Employee> employeeList = new EmployeeDAO().findByEmployeeName(searchWord);
+		// 検索ワード
+		String searchWord = (String) nameReader.input();
 
-			ConsoleWriter.showEmployees(employeeList);
+		List<Employee> employeeList = new EmployeeDAO().findByEmployeeName(searchWord);
 
-		} catch (IOException e) {
-			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
-		}
+		ConsoleWriter.showEmployees(employeeList);
 	}
 
 }

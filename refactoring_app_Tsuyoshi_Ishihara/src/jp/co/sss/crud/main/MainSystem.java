@@ -1,13 +1,12 @@
 package jp.co.sss.crud.main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.IEmployeeService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
@@ -29,9 +28,9 @@ public class MainSystem {
 	 * @throws ParseException 
 	 * @throws SystemErrorException 
 	 */
-	public static void main(String[] args) throws SystemErrorException, IllegalInputException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static void main(String[] args) {
 
+		MenuNoReader menuNoReader = new MenuNoReader();
 		int menuNo = 0;
 
 		do {
@@ -46,16 +45,25 @@ public class MainSystem {
 			System.out.println("7.終了");
 			System.out.print(ConstantMsg.INPUT_NO);
 
-			// メニュー番号の入力
-			String menuNoStr = br.readLine();
-			menuNo = Integer.parseInt(menuNoStr);
+			try {
+				// メニュー番号の入力
+				menuNo = (int) menuNoReader.input();
 
-			if (menuNo != ConstantValue.MENU_SHUT_DOWN) {
-				// サービスクラスの取得
-				IEmployeeService employeeService = IEmployeeService.getInstanceByMenuNo(menuNo);
+				if (menuNo != ConstantValue.MENU_SHUT_DOWN) {
+					// サービスクラスの取得
+					IEmployeeService employeeService = IEmployeeService.getInstanceByMenuNo(menuNo);
 
-				// 機能の呼出
-				employeeService.execute();
+					// 機能の呼出
+					employeeService.execute();
+				}
+
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				continue;
+
+			} catch (SystemErrorException e) {
+				System.out.println(e.getMessage());
+				break;
 			}
 
 		} while (menuNo != ConstantValue.MENU_SHUT_DOWN);

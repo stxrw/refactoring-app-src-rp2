@@ -1,5 +1,7 @@
 package jp.co.sss.crud.db;
 
+import static jp.co.sss.crud.util.ConstantMsg.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,7 +55,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 				employeeList.add(employee);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// resultSet, Statementをクローズ
@@ -115,7 +117,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 				employeeList.add(employee);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// resultSet, Statementをクローズ
@@ -177,7 +179,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 				employeeList.add(employee);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// resultSet, Statementをクローズ
@@ -219,7 +221,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 			// TODO　↓要修正　ParseException
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// Statementをクローズ
@@ -253,13 +255,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			preparedStatement.setObject(3, sdf.parse(employee.getBirthDay()), Types.DATE);
 			preparedStatement.setInt(4, employee.getDeptId());
+			preparedStatement.setInt(5, employee.getEmpId());
 
 			// SQL文の実行(失敗時は戻り値0)
 			result = preparedStatement.executeUpdate();
 
 			// TODO　↓要修正　ParseException
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// Statementをクローズ
@@ -295,7 +298,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			// Statementをクローズ
