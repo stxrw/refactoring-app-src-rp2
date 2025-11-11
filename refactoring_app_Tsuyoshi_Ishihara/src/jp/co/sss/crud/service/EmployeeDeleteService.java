@@ -9,7 +9,7 @@ import java.text.ParseException;
 import jp.co.sss.crud.db.DBController;
 import jp.co.sss.crud.exception.SystemErrorException;
 
-public class EmployeeDeleteService {
+public class EmployeeDeleteService implements IEmployeeService {
 	public void execute() throws SystemErrorException {
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

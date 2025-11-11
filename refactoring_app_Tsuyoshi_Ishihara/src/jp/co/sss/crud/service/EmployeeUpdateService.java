@@ -11,7 +11,7 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 
-public class EmployeeUpdateService {
+public class EmployeeUpdateService implements IEmployeeService {
 	public void execute() throws SystemErrorException, IllegalInputException {
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

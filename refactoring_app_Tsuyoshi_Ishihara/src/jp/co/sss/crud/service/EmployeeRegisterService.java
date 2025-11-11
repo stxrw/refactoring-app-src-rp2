@@ -10,7 +10,7 @@ import jp.co.sss.crud.db.DBController;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 
-public class EmployeeRegisterService {
+public class EmployeeRegisterService implements IEmployeeService {
 	public void execute() throws SystemErrorException, IllegalInputException {
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

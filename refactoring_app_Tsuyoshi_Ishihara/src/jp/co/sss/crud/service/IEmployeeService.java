@@ -1,5 +1,8 @@
 package jp.co.sss.crud.service;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
+
 /**
  * 社員管理のためのビジネスロジックインターフェース
  */
@@ -46,8 +49,7 @@ public interface IEmployeeService {
 	 * 
 	 * @throws SystemErrorException, IllegalInputException
 	 */
-	public void execute();
-	//TODO 独自例外定義後に以下に差し替える
-	//	public void execute() throws SystemErrorException, IllegalInputException;
+
+	public void execute() throws SystemErrorException, IllegalInputException;
 
 }

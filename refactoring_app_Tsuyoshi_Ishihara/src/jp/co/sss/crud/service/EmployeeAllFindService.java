@@ -8,7 +8,7 @@ import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 
-public class EmployeeAllFindService {
+public class EmployeeAllFindService implements IEmployeeService {
 	public void execute() throws SystemErrorException {
 
 		try {

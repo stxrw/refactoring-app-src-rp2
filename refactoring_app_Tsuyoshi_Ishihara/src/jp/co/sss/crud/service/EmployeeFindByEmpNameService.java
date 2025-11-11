@@ -12,7 +12,7 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 
-public class EmployeeFindByEmpNameService {
+public class EmployeeFindByEmpNameService implements IEmployeeService {
 	public void execute() throws SystemErrorException, IllegalInputException {
 		try {
 			// 社員名検索
